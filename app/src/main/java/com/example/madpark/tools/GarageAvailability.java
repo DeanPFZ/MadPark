@@ -20,10 +20,11 @@ public class GarageAvailability {
         new getCityJSON().execute();
     }
 
-    public ArrayList<String> getRampAndSpots(){
+    public ArrayList<String> getRampAndSpots() {
         return rampAndSpots;
     }
-    public ArrayList<Uri> getMapOfUW(){
+
+    public ArrayList<Uri> getMapOfUW() {
         ArrayList<Uri> finalMap = new ArrayList<>();
         for (int position = 0; position < rampAndSpots.size(); position++) {
             if (position >= 7) {

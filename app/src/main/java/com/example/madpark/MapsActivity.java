@@ -136,7 +136,7 @@ public class MapsActivity extends AppCompatActivity
                     .title(entry.getKey())
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
                     .setTag(0);
-            if (firstLaunch){
+            if (firstLaunch) {
                 parkingLocationPos.put(entry.getKey(), i);
             }
             i++;
@@ -159,9 +159,9 @@ public class MapsActivity extends AppCompatActivity
         int pos = parkingLocationPos.get(marker.getTitle());
         if (myParkingSpots != null && myUWMap != null && myParkingSpots.size() != 0 && myUWMap.size() != 0) {
             Intent intent = new Intent(MapsActivity.this, DialogActivity.class);
-            intent.putExtra("name",marker.getTitle());
-            intent.putExtra("availability",myParkingSpots.get(pos));
-            intent.putExtra("website",myUWMap.get(pos).toString());
+            intent.putExtra("name", marker.getTitle());
+            intent.putExtra("availability", myParkingSpots.get(pos));
+            intent.putExtra("website", myUWMap.get(pos).toString());
             startActivity(intent);
         }
         return false;
