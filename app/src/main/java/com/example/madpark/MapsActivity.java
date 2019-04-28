@@ -270,4 +270,18 @@ public class MapsActivity extends AppCompatActivity
         Intent intent = new Intent(MapsActivity.this, DestinationActivity.class);
         startActivity(intent);
     }
+
+    public void startParkMyCar(View view) {
+        Bundle coordsBundle = new Bundle();
+        if (mLastLocation == null){
+            return;
+        }
+        coordsBundle.putParcelable("coords", new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()));
+        Intent intent = new Intent(MapsActivity.this, ParkCarActivity.class);
+        intent.putExtra("bundle", coordsBundle);
+        startActivity(intent);
+    }
+
+    public void startFindMyCar(View view) {
+    }
 }

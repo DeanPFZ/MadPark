@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -9,22 +9,56 @@
     android:layout_height="match_parent"
     tools:context=".MapsActivity">
 
-
-    <Button
-        android:id="@+id/findparking"
-        style="@style/Widget.AppCompat.Button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginTop="20dp"
-        android:alpha="0.80"
-        android:padding="10dp"
-        android:paddingRight="10dp"
-        android:text="@string/find_parking"
-        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        android:typeface="serif"
-        android:onClick="startFindingIntent"/>
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|center">
+
+        <Button
+            android:id="@+id/parkmycar"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.80"
+            android:padding="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/park_my_car"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:onClick="startParkMyCar"/>
+
+        <Button
+            android:id="@+id/findparking"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.80"
+            android:padding="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/find_parking"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:onClick="startFindingIntent"/>
+
+        <Button
+            android:id="@+id/findycar"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.80"
+            android:padding="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/find_my_car"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:typeface="serif"
+            android:onClick="startFindMyCar"/>
+    </LinearLayout>
 
 </fragment>

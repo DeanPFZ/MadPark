@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -52,6 +54,11 @@
             android:name=".DestinationActivity"
             android:label="@string/title_destination_activity"
             android:theme="@style/DestinationDialogTheme" />
+        <activity
+            android:name=".ParkCarActivity"
+            android:label="@string/title_activity_park_car"
+            android:theme="@style/DestinationDialogTheme" />
+        <receiver android:name=".tools.NotificationReceiver" />
     </application>
 
 
