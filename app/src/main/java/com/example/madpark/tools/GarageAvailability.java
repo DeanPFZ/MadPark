@@ -119,7 +119,6 @@ public class GarageAvailability {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             new getUWJSON().execute();
-            System.out.println("The data has been transferred completely");
         }
 
     }

@@ -1,27 +1,17 @@
 package com.example.madpark;
 
-import android.Manifest;
 import android.app.AlarmManager;
-import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.provider.Settings;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,20 +20,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.madpark.tools.NotificationReceiver;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class ParkCarActivity extends AppCompatActivity {
 
     NotificationCompat.Builder builder;
 
     private LatLng bundleCoords;
-    private Location lastLocation;
     private String TAG = "ParkCarActivity";
     private TextView tv;
     NotificationManager notificationManager;
@@ -72,7 +58,7 @@ public class ParkCarActivity extends AppCompatActivity {
             Log.i(TAG, "Invalid Time");
             Toast.makeText(this, "Invalid Time", Toast.LENGTH_LONG).show();
             return;
-        } else if (Long.parseLong(tv.getText().toString()) <= 10){
+        } else if (Long.parseLong(tv.getText().toString()) <= 10) {
             Log.i(TAG, "Invalid Time");
             Toast.makeText(this, "Invalid Time! Enter a number larger than 10!", Toast.LENGTH_LONG).show();
             return;
@@ -87,9 +73,9 @@ public class ParkCarActivity extends AppCompatActivity {
 
         String tempTime = tv.getText().toString();
         tv.setText("");
-        long lTime = Long.parseLong(tempTime) - 10 ;
+        long lTime = Long.parseLong(tempTime) - 10;
 
-        if (lTime < 50){//user will be back in one hour, which means user is not far away from the car
+        if (lTime < 50) {//user will be back in one hour, which means user is not far away from the car
             lTime = 5;
         }
 
@@ -115,21 +101,21 @@ public class ParkCarActivity extends AppCompatActivity {
         //set an alarm (or timer) to have the notification occur
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingNotifIntent);
-
         saveCarLocation(bundleCoords);
         Intent returnIntent = new Intent(ParkCarActivity.this, MapsActivity.class);
         startActivity(returnIntent);
     }
 
     private void saveCarLocation(LatLng loc) {
+        Log.i(TAG, "The location of the registered car is: " + loc);
         // Getting the shared preferences editor
         SharedPreferences mPrefs = getSharedPreferences(mypreference, MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mPrefs.edit();
         mEditor.clear();
-        // Save email information
-        String mKey = "Location";
-        String mValue = loc.toString();
-        mEditor.putString(mKey, mValue);
+        // Save location information
+        String mKey = "carRegLocation";
+        String mLocation = Double.toString(loc.latitude) + "," + Double.toString(loc.longitude);
+        mEditor.putString(mKey, mLocation);
         mEditor.apply();
     }
 

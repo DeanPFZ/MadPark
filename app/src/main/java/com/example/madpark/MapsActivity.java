@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
@@ -37,6 +38,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import static com.example.madpark.ParkCarActivity.mypreference;
 
 public class MapsActivity extends AppCompatActivity
         implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -231,7 +235,6 @@ public class MapsActivity extends AppCompatActivity
                     }
 
                 } else {
-
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                     Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
@@ -273,7 +276,7 @@ public class MapsActivity extends AppCompatActivity
 
     public void startParkMyCar(View view) {
         Bundle coordsBundle = new Bundle();
-        if (mLastLocation == null){
+        if (mLastLocation == null) {
             return;
         }
         coordsBundle.putParcelable("coords", new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()));
@@ -283,5 +286,27 @@ public class MapsActivity extends AppCompatActivity
     }
 
     public void startFindMyCar(View view) {
+        // Getting the shared preferences editor
+        SharedPreferences mPrefs = getSharedPreferences(mypreference, MODE_PRIVATE);
+        String myCarLocation = mPrefs.getString("carRegLocation", null);
+
+        // Save location information
+        if (myCarLocation == null) {
+            Toast.makeText(this, "Location has not been registered!",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String[] myCarLocationArray = myCarLocation.split(",");
+        double myCarLat = Double.parseDouble(myCarLocationArray[0]);
+        double myCarLon = Double.parseDouble(myCarLocationArray[1]);
+        SharedPreferences.Editor mEditor = mPrefs.edit();
+        mEditor.clear();
+        mEditor.putString("carRegLocation", null);
+        mEditor.apply();
+        Toast.makeText(this, "The location is\n Lat:" + myCarLat + " Lon: " + myCarLon,
+                Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("https://www.google.com/maps/search/?api=1&query=" + myCarLat + "," + myCarLon));
+        startActivity(intent);
     }
 }
