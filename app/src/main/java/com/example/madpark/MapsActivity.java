@@ -14,9 +14,11 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.madpark.tools.GarageAvailability;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -30,8 +32,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -39,7 +46,7 @@ import java.util.Map;
 
 public class MapsActivity extends AppCompatActivity
         implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-    private static final Map<String, Double[]> parkingLocations = new LinkedHashMap<String, Double[]>() {
+    public static final Map<String, Double[]> parkingLocations = new LinkedHashMap<String, Double[]>() {
         {
             put("Brayton Parking Lot", new Double[]{43.076726, -89.380210});
             put("Capitol Square North Garage", new Double[]{43.077692, -89.383034});
@@ -62,6 +69,7 @@ public class MapsActivity extends AppCompatActivity
             put("University Bay Drive Ramp", new Double[]{43.081431, -89.428221});
         }
     };
+    final static String TAG = "MAP";
     Map<String, Integer> parkingLocationPos = new HashMap<String, Integer>();
 
     GoogleMap mGoogleMap;
@@ -143,28 +151,6 @@ public class MapsActivity extends AppCompatActivity
             // Set a listener for marker click.
             mGoogleMap.setOnMarkerClickListener(this);
         }
-    }
-
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        final ArrayList<String> myParkingSpots = myGarageAvailability.getRampAndSpots();
-        final ArrayList<Uri> myUWMap = myGarageAvailability.getMapOfUW();
-        System.out.println("The parking spots: " + myParkingSpots);
-        System.out.println("The myUWMap: " + myUWMap);
-        System.out.println("The parkingLocationPos: " + parkingLocationPos);
-        Toast.makeText(this,
-                marker.getTitle() +
-                        " has been clicked",
-                Toast.LENGTH_SHORT).show();
-        int pos = parkingLocationPos.get(marker.getTitle());
-        if (myParkingSpots != null && myUWMap != null && myParkingSpots.size() != 0 && myUWMap.size() != 0) {
-            Intent intent = new Intent(MapsActivity.this, DialogActivity.class);
-            intent.putExtra("name", marker.getTitle());
-            intent.putExtra("availability", myParkingSpots.get(pos));
-            intent.putExtra("website", myUWMap.get(pos).toString());
-            startActivity(intent);
-        }
-        return false;
     }
 
 
@@ -262,5 +248,32 @@ public class MapsActivity extends AppCompatActivity
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        final ArrayList<String> myParkingSpots = myGarageAvailability.getRampAndSpots();
+        final ArrayList<Uri> myUWMap = myGarageAvailability.getMapOfUW();
+        System.out.println("The parking spots: " + myParkingSpots);
+        System.out.println("The myUWMap: " + myUWMap);
+        System.out.println("The parkingLocationPos: " + parkingLocationPos);
+        Toast.makeText(this,
+                marker.getTitle() +
+                        " has been clicked",
+                Toast.LENGTH_SHORT).show();
+        int pos = parkingLocationPos.get(marker.getTitle());
+        if (myParkingSpots != null && myUWMap != null && myParkingSpots.size() != 0 && myUWMap.size() != 0) {
+            Intent intent = new Intent(MapsActivity.this, DialogActivity.class);
+            intent.putExtra("name", marker.getTitle());
+            intent.putExtra("availability", myParkingSpots.get(pos));
+            intent.putExtra("website", myUWMap.get(pos).toString());
+            startActivity(intent);
+        }
+        return false;
+    }
+
+    public void startFindingIntent(View view) {
+        Intent intent = new Intent(MapsActivity.this, DestinationActivity.class);
+        startActivity(intent);
     }
 }

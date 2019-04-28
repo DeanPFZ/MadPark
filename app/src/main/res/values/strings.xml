@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">MadPark</string>
     <string name="title_activity_maps">Map</string>
-    <string name="find_parking">😠 Find Me a Spot</string>
+    <string name="find_parking">Find Parking</string>
 
     <string name="title_activity_dialog">Parking Availability</string>
     <string name="dialog_text">Simple Dialog</string>
     <string name="btn_finish_dialog_label">Close</string>
     <string name="btn_start_route_label">Let\'s Go</string>
+
+    <string name="title_destination_activity">Your Destination</string>
 </resources>

@@ -24,6 +24,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:onClick="startFindingIntent"/>
 
 </fragment>
