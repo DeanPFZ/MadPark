@@ -60,7 +60,7 @@ public class ParkCarActivity extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(this, "Set Parking Location!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Set Parking Location! We will remind you when it's time to move your car!", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://www.google.com/maps/search/?api=1&query=" + bundleCoords.latitude + "," + bundleCoords.longitude));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

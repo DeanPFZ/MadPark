@@ -17,7 +17,7 @@
         android:gravity="center"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:text="Enter the time limit for your current parking location, and we'll remind you when it's time to move your car!"
+        android:text="How Long Are You Parking Here?"
         android:textSize="25sp" />
 
     <EditText
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:ems="10"
-        android:hint="Enter Time Limit (> 10min)"
+        android:hint="Enter Time in Minutes (> 10min)"
         android:inputType="number"
         tools:layout_editor_absoluteX="99dp"
         tools:layout_editor_absoluteY="4dp" />
@@ -42,7 +42,7 @@
         android:id="@+id/streetParkingTimes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="bottom|center"
         android:paddingLeft="5dp"
         android:paddingTop="15dp"
         android:paddingRight="5dp"
