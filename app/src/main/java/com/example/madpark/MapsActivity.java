@@ -250,9 +250,11 @@ public class MapsActivity extends AppCompatActivity
     public boolean onMarkerClick(Marker marker) {
         final ArrayList<String> myParkingSpots = myGarageAvailability.getRampAndSpots();
         final ArrayList<Uri> myUWMap = myGarageAvailability.getMapOfUW();
-        System.out.println("The parking spots: " + myParkingSpots);
-        System.out.println("The myUWMap: " + myUWMap);
-        System.out.println("The parkingLocationPos: " + parkingLocationPos);
+        if (myParkingSpots.size() <19){
+            Toast.makeText(this,"Data Not Ready!",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
         Toast.makeText(this,
                 marker.getTitle() +
                         " has been clicked",
@@ -307,5 +309,11 @@ public class MapsActivity extends AppCompatActivity
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("https://www.google.com/maps/search/?api=1&query=" + myCarLat + "," + myCarLon));
         startActivity(intent);
+    }
+
+    public void refreshData(View view) {
+        myGarageAvailability = new GarageAvailability();
+        Toast.makeText(this, "Updating parking availability...",
+                Toast.LENGTH_SHORT).show();
     }
 }

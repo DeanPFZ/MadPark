@@ -4,6 +4,7 @@
     <string name="find_parking">Find Parking</string>
     <string name="park_my_car">Park My Car</string>
     <string name="find_my_car">Find My Car</string>
+    <string name="refresh">Refresh</string>
 
     <string name="title_activity_dialog">Parking Availability</string>
     <string name="dialog_text">Simple Dialog</string>
