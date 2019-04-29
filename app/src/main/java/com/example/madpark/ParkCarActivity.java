@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,9 +20,6 @@ import android.widget.Toast;
 
 import com.example.madpark.tools.NotificationReceiver;
 import com.google.android.gms.maps.model.LatLng;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class ParkCarActivity extends AppCompatActivity {
 
