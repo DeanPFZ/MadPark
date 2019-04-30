@@ -31,7 +31,7 @@
                 android:text="@string/park_my_car"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:typeface="serif"
                 android:onClick="startParkMyCar"/>
 
@@ -46,7 +46,7 @@
                 android:text="@string/find_parking"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:typeface="serif"
                 android:onClick="startFindingIntent"/>
 
@@ -61,7 +61,7 @@
                 android:text="@string/find_my_car"
                 android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:typeface="serif"
                 android:onClick="startFindMyCar"/>
         </LinearLayout>

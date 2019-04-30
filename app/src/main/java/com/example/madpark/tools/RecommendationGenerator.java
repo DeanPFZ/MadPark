@@ -41,7 +41,14 @@ public class RecommendationGenerator {
             }
             pos++;
         }
-        parkingLocationKey = minDistanceLotName;
+        if(minDistance >= .00013 ) {
+            parkingLocationKey = "It looks like your location is outside downtown/campus. Either street park nearby or your destination may have parking on site.";
+            parkingLocationWebsite = Uri.parse("https://www.google.com/maps/search/?api=1&query=" + destLatitude + "," + destLongtitude);
+        }
+        else {
+            parkingLocationKey = minDistanceLotName;
+        }
+
     }
 
     public Uri getParkingLocationWebsite(){

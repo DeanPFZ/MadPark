@@ -28,7 +28,7 @@ import static com.example.madpark.MapsActivity.parkingLocations;
 
 public class DestinationActivity extends AppCompatActivity {
 
-    private static final String GOOGLE_PLACES_API_KEY = "AIzaSyAVOiI_tlj4I7sN3_zAiB_Ye_Z_VRIZq8A";
+    private static String GOOGLE_PLACES_API_KEY;
     private static final int AUTOCOMPLETE_REQUEST_CODE = 123;
     private TextView tvLocationName, myClosestRecc;
     private Double destLat;
@@ -38,6 +38,7 @@ public class DestinationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        GOOGLE_PLACES_API_KEY = this.getString(R.string.google_maps_key);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destination);
         if (!Places.isInitialized()) {
